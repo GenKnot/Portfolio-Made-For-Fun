@@ -1,0 +1,262 @@
+---
+---
+
+<section id="skills" class="skills">
+	<div class="container">
+		<div class="section-header">
+			<span class="section-number">02</span>
+			<h2 class="section-title">Skills & Expertise</h2>
+		</div>
+		<div class="skills-grid">
+			<div class="skill-category">
+				<h3 class="category-title">Frontend</h3>
+				<div class="skill-tags">
+					<span class="tag">React</span>
+					<span class="tag">Vue.js</span>
+					<span class="tag">TypeScript</span>
+					<span class="tag">Next.js</span>
+					<span class="tag">Astro</span>
+					<span class="tag">CSS</span>
+				</div>
+			</div>
+			<div class="skill-category">
+				<h3 class="category-title">Backend</h3>
+				<div class="skill-tags">
+					<span class="tag">Node.js</span>
+					<span class="tag">Python</span>
+					<span class="tag">PostgreSQL</span>
+					<span class="tag">MongoDB</span>
+					<span class="tag">GraphQL</span>
+				</div>
+			</div>
+			<div class="skill-category">
+				<h3 class="category-title">Tools</h3>
+				<div class="skill-tags">
+					<span class="tag">Git</span>
+					<span class="tag">Docker</span>
+					<span class="tag">AWS</span>
+					<span class="tag">Figma</span>
+					<span class="tag">GSAP</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.skills {
+		padding: 8rem 0;
+		background: rgba(255, 255, 255, 0.02);
+		position: relative;
+	}
+
+	.container {
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 0 2rem;
+	}
+
+	.section-header {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		margin-bottom: 5rem;
+		overflow: hidden;
+	}
+
+	.section-number {
+		font-size: 1.2rem;
+		font-weight: 300;
+		color: rgba(255, 255, 255, 0.3);
+		font-family: 'Courier New', monospace;
+	}
+
+	.section-title {
+		font-size: clamp(2rem, 5vw, 4rem);
+		font-weight: 700;
+		line-height: 1.2;
+	}
+
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 3rem;
+	}
+
+	.skill-category {
+		position: relative;
+		padding: 2.5rem;
+		border-radius: 20px;
+		border: 1px solid rgba(255, 255, 255, 0.05);
+		background: rgba(255, 255, 255, 0.02);
+		backdrop-filter: blur(10px);
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		overflow: hidden;
+	}
+
+	.skill-category::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+		opacity: 0;
+		transition: opacity 0.4s ease;
+	}
+
+	.skill-category:hover::before {
+		opacity: 1;
+	}
+
+	.skill-category:hover {
+		border-color: rgba(255, 255, 255, 0.2);
+		background: rgba(255, 255, 255, 0.05);
+		transform: translateY(-8px) scale(1.02);
+		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+	}
+
+	.category-title {
+		position: relative;
+		z-index: 1;
+		font-size: 1.3rem;
+		font-weight: 600;
+		margin-bottom: 1.5rem;
+		color: #ffffff;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.category-title::after {
+		content: '';
+		flex: 1;
+		height: 1px;
+		background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), transparent);
+	}
+
+	.skill-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		position: relative;
+		z-index: 1;
+	}
+
+	.tag {
+		position: relative;
+		padding: 0.6rem 1.2rem;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 50px;
+		font-size: 0.9rem;
+		color: rgba(255, 255, 255, 0.8);
+		background: rgba(255, 255, 255, 0.03);
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		overflow: hidden;
+	}
+
+	.tag::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		height: 0;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.1);
+		transform: translate(-50%, -50%);
+		transition: width 0.6s, height 0.6s;
+	}
+
+	.tag:hover::before {
+		width: 300px;
+		height: 300px;
+	}
+
+	.tag:hover {
+		border-color: rgba(255, 255, 255, 0.4);
+		background: rgba(255, 255, 255, 0.08);
+		transform: translateY(-3px) scale(1.05);
+		color: #ffffff;
+	}
+
+	.tag span {
+		position: relative;
+		z-index: 1;
+	}
+
+	@media (max-width: 768px) {
+		.skills {
+			padding: 4rem 0;
+		}
+
+		.section-header {
+			margin-bottom: 3rem;
+		}
+
+		.skills-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+	}
+</style>
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	setTimeout(() => {
+		const section = document.querySelector('.skills');
+		if (!section) return;
+
+		gsap.set('.skill-category', { opacity: 1, y: 0, scale: 1 });
+		gsap.set('.tag', { opacity: 1, scale: 1, rotation: 0 });
+
+		gsap.from('.skills .section-number, .skills .section-title', {
+			scrollTrigger: {
+				trigger: section,
+				start: 'top 95%'
+			},
+			opacity: 0,
+			x: -60,
+			duration: 1,
+			stagger: 0.1,
+			ease: 'power3.out'
+		});
+
+		gsap.from('.skill-category', {
+			scrollTrigger: {
+				trigger: '.skills-grid',
+				start: 'top 100%'
+			},
+			opacity: 0,
+			y: 50,
+			scale: 0.96,
+			duration: 1,
+			stagger: 0.15,
+			ease: 'power3.out'
+		});
+
+		document.querySelectorAll('.skill-category').forEach(category => {
+			gsap.from(category.querySelectorAll('.tag'), {
+				scrollTrigger: {
+					trigger: category,
+					start: 'top 100%'
+				},
+				opacity: 0,
+				scale: 0.85,
+				rotation: -8,
+				duration: 0.6,
+				stagger: 0.06,
+				ease: 'back.out(1.5)'
+			});
+		});
+	}, 100);
+</script>
+
+
+
+

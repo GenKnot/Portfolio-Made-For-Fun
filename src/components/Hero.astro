@@ -1,0 +1,241 @@
+---
+---
+
+<section class="hero">
+	<video id="hero-video-1" class="hero-background active" autoplay muted playsinline>
+		<source src="/1.mp4" type="video/mp4">
+	</video>
+	<video id="hero-video-2" class="hero-background" muted playsinline>
+		<source src="/video%20(1).mp4" type="video/mp4">
+	</video>
+	<div class="hero-overlay"></div>
+	<div class="hero-content">
+		<h1 class="hero-title">
+			<span class="line" data-text="Hello, I'm">Hello, I'm</span>
+			<span class="line name" data-text="GenKnot">GenKnot</span>
+		</h1>
+		<p class="hero-subtitle">A Creative Developer</p>
+		<div class="hero-cta">
+			<a href="#about" class="btn">Explore</a>
+			<a href="#projects" class="btn btn-secondary">Projects</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		width: 100%;
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+	}
+
+	.hero-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: 1;
+		opacity: 0;
+		transition: opacity 1s ease-in-out;
+	}
+
+	.hero-background.active {
+		opacity: 1;
+	}
+
+	.hero-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+		z-index: 2;
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 3;
+		text-align: center;
+		padding: 0 2rem;
+		max-width: 1400px;
+	}
+
+	.hero-title {
+		font-size: clamp(3rem, 12vw, 9rem);
+		font-weight: 700;
+		line-height: 1.05;
+		margin-bottom: 2rem;
+		letter-spacing: -0.03em;
+	}
+
+	.hero-title .line {
+		display: block;
+		opacity: 0;
+		transform: translateY(30px);
+	}
+
+	.hero-title .name {
+		background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hero-subtitle {
+		font-size: clamp(1.4rem, 4vw, 2.4rem);
+		font-weight: 300;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 4rem;
+		letter-spacing: 0.02em;
+		line-height: 1.6;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	.hero-cta {
+		display: flex;
+		gap: 2rem;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	.btn {
+		padding: 1.25rem 3rem;
+		border-radius: 30px;
+		color: #ffffff;
+		text-decoration: none;
+		font-weight: 500;
+		font-size: 1.1rem;
+		letter-spacing: 0.02em;
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		backdrop-filter: blur(20px);
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+	}
+
+	.btn:hover {
+		background: rgba(255, 255, 255, 0.15);
+		border-color: rgba(255, 255, 255, 0.3);
+		transform: translateY(-3px);
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+	}
+
+	.btn-secondary {
+		background: transparent;
+		border: 2px solid rgba(255, 255, 255, 0.3);
+	}
+
+	.btn-secondary:hover {
+		border-color: rgba(255, 255, 255, 0.5);
+		background: rgba(255, 255, 255, 0.05);
+	}
+
+	@media (max-width: 768px) {
+		.hero-content {
+			padding: 0 1.5rem;
+		}
+
+		.hero-title {
+			margin-bottom: 1.5rem;
+		}
+
+		.hero-subtitle {
+			margin-bottom: 3rem;
+			font-size: 1.2rem;
+		}
+
+		.hero-cta {
+			flex-direction: column;
+			gap: 1.5rem;
+		}
+
+		.btn {
+			width: 100%;
+			max-width: 280px;
+			padding: 1.1rem 2.5rem;
+		}
+	}
+</style>
+
+<script>
+	import { gsap } from 'gsap';
+
+	setTimeout(() => {
+		const video1 = document.getElementById('hero-video-1') as HTMLVideoElement;
+		const video2 = document.getElementById('hero-video-2') as HTMLVideoElement;
+
+		if (video1 && video2) {
+			video1.addEventListener('loadedmetadata', () => {
+				video1.play().catch(() => {});
+			});
+
+			video2.addEventListener('loadedmetadata', () => {
+				console.log('Video 2 ready');
+			});
+
+			video1.addEventListener('ended', () => {
+				video1.classList.remove('active');
+				video2.classList.add('active');
+				video2.currentTime = 0;
+				video2.play().catch(() => {});
+			});
+
+			video2.addEventListener('ended', () => {
+				video2.classList.remove('active');
+				video1.classList.add('active');
+				video1.currentTime = 0;
+				video1.play().catch(() => {});
+			});
+		}
+
+		const heroTitle = document.querySelector('.hero-title');
+		const heroSubtitle = document.querySelector('.hero-subtitle');
+		const heroCta = document.querySelector('.hero-cta');
+
+		if (heroTitle) {
+			gsap.to('.hero-title .line', {
+				opacity: 1,
+				y: 0,
+				duration: 1,
+				stagger: 0.2,
+				ease: 'power3.out',
+				delay: 0.3
+			});
+		}
+
+		if (heroSubtitle) {
+			gsap.to(heroSubtitle, {
+				opacity: 1,
+				y: 0,
+				duration: 1,
+				ease: 'power2.out',
+				delay: 0.8
+			});
+		}
+
+		if (heroCta) {
+			gsap.to(heroCta, {
+				opacity: 1,
+				y: 0,
+				duration: 0.8,
+				ease: 'power2.out',
+				delay: 1.2
+			});
+		}
+	}, 100);
+</script>
+

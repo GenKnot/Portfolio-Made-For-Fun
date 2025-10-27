@@ -1,0 +1,129 @@
+---
+---
+
+<section id="contact" class="contact">
+	<div class="container">
+		<div class="section-header">
+			<span class="section-number">04</span>
+			<h2 class="section-title">Let's Connect</h2>
+		</div>
+		<div class="contact-content">
+			<div class="contact-info">
+				<p class="contact-intro">Have a project in mind? I'd love to hear from you.</p>
+			</div>
+		</div>
+		<footer class="footer">
+			<p>&copy; 2025 GenKnot. All rights reserved.</p>
+		</footer>
+	</div>
+</section>
+
+<style>
+	.contact {
+		padding: 8rem 0 4rem;
+		background: rgba(255, 255, 255, 0.02);
+		position: relative;
+	}
+
+	.container {
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 0 2rem;
+	}
+
+	.section-header {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		margin-bottom: 5rem;
+		overflow: hidden;
+	}
+
+	.section-number {
+		font-size: 1.2rem;
+		font-weight: 300;
+		color: rgba(255, 255, 255, 0.3);
+		font-family: 'Courier New', monospace;
+	}
+
+	.section-title {
+		font-size: clamp(2rem, 5vw, 4rem);
+		font-weight: 700;
+		line-height: 1.2;
+	}
+
+	.contact-content {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	.contact-intro {
+		font-size: 1.4rem;
+		color: rgba(255, 255, 255, 0.9);
+		margin-bottom: 4rem;
+		text-align: center;
+		line-height: 1.6;
+	}
+
+	.footer {
+		padding-top: 5rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.05);
+		text-align: center;
+	}
+
+	.footer p {
+		color: rgba(255, 255, 255, 0.2);
+		font-size: 0.9rem;
+	}
+
+	@media (max-width: 768px) {
+		.contact {
+			padding: 4rem 0 2rem;
+		}
+
+		.section-header {
+			margin-bottom: 3rem;
+		}
+
+		.contact-intro {
+			font-size: 1.1rem;
+			margin-bottom: 2rem;
+		}
+	}
+</style>
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	setTimeout(() => {
+		gsap.from('.contact .section-number, .contact .section-title', {
+			scrollTrigger: {
+				trigger: '.contact',
+				start: 'top 95%'
+			},
+			opacity: 0,
+			x: -60,
+			duration: 1,
+			stagger: 0.1,
+			ease: 'power3.out'
+		});
+
+		gsap.from('.contact-intro', {
+			scrollTrigger: {
+				trigger: '.contact-intro',
+				start: 'top 100%'
+			},
+			opacity: 0,
+			y: 30,
+			duration: 1,
+			ease: 'power3.out'
+		});
+	}, 100);
+</script>
+
+
+
+

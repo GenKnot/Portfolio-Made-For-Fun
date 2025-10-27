@@ -1,0 +1,243 @@
+---
+---
+
+<section id="about" class="about">
+	<div class="container">
+		<div class="section-header">
+			<span class="section-number">01</span>
+			<h2 class="section-title">About Me</h2>
+		</div>
+		<div class="about-content">
+			<div class="about-text">
+				<p class="text-large">I'm GenKnot, a creative developer passionate about crafting beautiful digital experiences.</p>
+				<p>With expertise in modern web technologies, I bring ideas to life through clean code and innovative design. I believe in the power of simplicity and the impact of attention to detail.</p>
+				<p>When I'm not coding, you'll find me exploring new technologies, experimenting with creative tools, or continuously learning to stay at the forefront of digital innovation.</p>
+				<div class="about-stats">
+					<div class="stat">
+						<span class="stat-number">50+</span>
+						<span class="stat-label">Projects</span>
+					</div>
+					<div class="stat">
+						<span class="stat-number">5+</span>
+						<span class="stat-label">Years</span>
+					</div>
+					<div class="stat">
+						<span class="stat-number">100%</span>
+						<span class="stat-label">Dedicated</span>
+					</div>
+				</div>
+			</div>
+			<div class="about-image">
+				<div class="image-wrapper">
+					<img src="/2.png" alt="Profile" />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.about {
+		padding: 8rem 0;
+		position: relative;
+	}
+
+	.container {
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 0 2rem;
+	}
+
+	.section-header {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		margin-bottom: 5rem;
+		overflow: hidden;
+	}
+
+	.section-number {
+		font-size: 1.2rem;
+		font-weight: 300;
+		color: rgba(255, 255, 255, 0.3);
+		font-family: 'Courier New', monospace;
+	}
+
+	.section-title {
+		font-size: clamp(2rem, 5vw, 4rem);
+		font-weight: 700;
+		line-height: 1.2;
+	}
+
+	.about-content {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 5rem;
+		align-items: center;
+	}
+
+	.about-text p {
+		margin-bottom: 1.5rem;
+		color: rgba(255, 255, 255, 0.7);
+		font-size: 1.1rem;
+		line-height: 1.8;
+	}
+
+	.text-large {
+		font-size: 1.5rem;
+		font-weight: 500;
+		color: #ffffff;
+		margin-bottom: 2rem;
+	}
+
+	.about-stats {
+		display: flex;
+		gap: 3rem;
+		margin-top: 3rem;
+		padding-top: 3rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.stat {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.stat-number {
+		font-size: 2.5rem;
+		font-weight: 700;
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.stat-label {
+		font-size: 0.9rem;
+		color: rgba(255, 255, 255, 0.5);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		margin-top: 0.5rem;
+	}
+
+	.about-image {
+		position: relative;
+	}
+
+	.image-wrapper {
+		position: relative;
+		border-radius: 20px;
+		overflow: hidden;
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+	}
+
+	.image-wrapper img {
+		width: 100%;
+		height: 500px;
+		object-fit: cover;
+		transition: transform 0.5s ease;
+	}
+
+	.image-wrapper:hover img {
+		transform: scale(1.05);
+	}
+
+	@media (max-width: 1024px) {
+		.about-content {
+			grid-template-columns: 1fr;
+			gap: 3rem;
+		}
+
+		.about-image {
+			order: -1;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.about {
+			padding: 4rem 0;
+		}
+
+		.section-header {
+			margin-bottom: 3rem;
+		}
+
+		.about-stats {
+			flex-direction: column;
+			gap: 2rem;
+		}
+	}
+</style>
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	setTimeout(() => {
+		gsap.from('.about .section-number, .about .section-title', {
+			scrollTrigger: {
+				trigger: '.about',
+				start: 'top 95%'
+			},
+			opacity: 0,
+			x: -60,
+			duration: 1,
+			stagger: 0.1,
+			ease: 'power3.out'
+		});
+
+		gsap.from('.about .text-large', {
+			scrollTrigger: {
+				trigger: '.about-text',
+				start: 'top 100%'
+			},
+			opacity: 0,
+			x: -50,
+			duration: 1.2,
+			ease: 'power3.out'
+		});
+
+		gsap.from('.about p:not(.text-large)', {
+			scrollTrigger: {
+				trigger: '.about-text',
+				start: 'top 100%'
+			},
+			opacity: 0,
+			x: -50,
+			duration: 1,
+			stagger: 0.15,
+			ease: 'power3.out'
+		});
+
+		gsap.from('.about .stat', {
+			scrollTrigger: {
+				trigger: '.about-stats',
+				start: 'top 100%'
+			},
+			opacity: 0,
+			scale: 0.8,
+			duration: 0.8,
+			stagger: 0.12,
+			ease: 'back.out(1.7)'
+		});
+
+		gsap.from('.about-image', {
+			scrollTrigger: {
+				trigger: '.about-image',
+				start: 'top 100%'
+			},
+			opacity: 0,
+			x: 50,
+			scale: 0.96,
+			duration: 1.2,
+			ease: 'power3.out'
+		});
+	}, 100);
+</script>
+
+
+
+
+

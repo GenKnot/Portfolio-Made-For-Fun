@@ -1,0 +1,298 @@
+---
+const projects = [
+	{
+		title: 'Project One',
+		category: 'Web Development',
+		description: 'A modern web application built with cutting-edge technologies.',
+		image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
+		link: '#'
+	},
+	{
+		title: 'Project Two',
+		category: 'Mobile App',
+		description: 'An innovative mobile solution for modern challenges.',
+		image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop',
+		link: '#'
+	},
+	{
+		title: 'Project Three',
+		category: 'Design System',
+		description: 'Creating cohesive design systems for better user experiences.',
+		image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop',
+		link: '#'
+	}
+];
+---
+
+<section id="projects" class="projects">
+	<div class="container">
+		<div class="section-header">
+			<span class="section-number">03</span>
+			<h2 class="section-title">Featured Projects</h2>
+		</div>
+		<div class="projects-grid">
+			{projects.map((project, index) => (
+				<div class="project-card" data-index={index}>
+					<div class="project-image">
+						<img src={project.image} alt={project.title} />
+						<div class="project-overlay">
+							<a href={project.link} class="project-link">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+									<polyline points="15 3 21 3 21 9"></polyline>
+									<line x1="10" y1="14" x2="21" y2="3"></line>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div class="project-content">
+						<span class="project-category">{project.category}</span>
+						<h3 class="project-title">{project.title}</h3>
+						<p class="project-description">{project.description}</p>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.projects {
+		padding: 8rem 0;
+		position: relative;
+	}
+
+	.container {
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 0 2rem;
+	}
+
+	.section-header {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		margin-bottom: 5rem;
+		overflow: hidden;
+	}
+
+	.section-number {
+		font-size: 1.2rem;
+		font-weight: 300;
+		color: rgba(255, 255, 255, 0.3);
+		font-family: 'Courier New', monospace;
+	}
+
+	.section-title {
+		font-size: clamp(2rem, 5vw, 4rem);
+		font-weight: 700;
+		line-height: 1.2;
+	}
+
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+		gap: 3rem;
+	}
+
+	.project-card {
+		position: relative;
+		border-radius: 24px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.05);
+		background: rgba(255, 255, 255, 0.02);
+		backdrop-filter: blur(10px);
+		transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+		cursor: pointer;
+	}
+
+	.project-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+		opacity: 0;
+		transition: opacity 0.4s ease;
+		z-index: 1;
+	}
+
+	.project-card:hover::before {
+		opacity: 1;
+	}
+
+	.project-card:hover {
+		border-color: rgba(255, 255, 255, 0.2);
+		background: rgba(255, 255, 255, 0.06);
+		transform: translateY(-12px) scale(1.02);
+		box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+	}
+
+	.project-image {
+		position: relative;
+		width: 100%;
+		height: 350px;
+		overflow: hidden;
+	}
+
+	.project-image::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+		opacity: 0;
+		transition: opacity 0.4s ease;
+	}
+
+	.project-card:hover .project-image::after {
+		opacity: 1;
+	}
+
+	.project-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+		filter: grayscale(30%);
+	}
+
+	.project-card:hover .project-image img {
+		transform: scale(1.15) rotate(2deg);
+		filter: grayscale(0%);
+	}
+
+	.project-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.85);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		backdrop-filter: blur(10px);
+		z-index: 2;
+	}
+
+	.project-card:hover .project-overlay {
+		opacity: 1;
+	}
+
+	.project-link {
+		color: #ffffff;
+		transition: all 0.4s ease;
+		padding: 1rem;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.1);
+		transform: scale(0.8) rotate(-180deg);
+	}
+
+	.project-card:hover .project-link {
+		transform: scale(1) rotate(0deg);
+		background: rgba(255, 255, 255, 0.2);
+	}
+
+	.project-link:hover {
+		transform: scale(1.1) rotate(5deg);
+	}
+
+	.project-content {
+		position: relative;
+		z-index: 1;
+		padding: 2.5rem;
+	}
+
+	.project-category {
+		display: inline-block;
+		font-size: 0.75rem;
+		color: rgba(255, 255, 255, 0.4);
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		margin-bottom: 0.75rem;
+		font-weight: 500;
+	}
+
+	.project-title {
+		font-size: 1.6rem;
+		font-weight: 600;
+		margin-bottom: 0.75rem;
+		color: #ffffff;
+		transition: transform 0.3s ease;
+	}
+
+	.project-card:hover .project-title {
+		transform: translateX(5px);
+	}
+
+	.project-description {
+		color: rgba(255, 255, 255, 0.6);
+		line-height: 1.7;
+		font-size: 0.95rem;
+	}
+
+	@media (max-width: 768px) {
+		.projects {
+			padding: 4rem 0;
+		}
+
+		.section-header {
+			margin-bottom: 3rem;
+		}
+
+		.projects-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+	}
+</style>
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	setTimeout(() => {
+		const section = document.querySelector('.projects');
+		if (!section) return;
+
+		gsap.set('.project-card', { opacity: 1, y: 0, scale: 1 });
+
+		gsap.from('.projects .section-number, .projects .section-title', {
+			scrollTrigger: {
+				trigger: section,
+				start: 'top 95%'
+			},
+			opacity: 0,
+			x: -60,
+			duration: 1,
+			stagger: 0.1,
+			ease: 'power3.out'
+		});
+
+		gsap.from('.project-card', {
+			scrollTrigger: {
+				trigger: '.projects-grid',
+				start: 'top 100%'
+			},
+			opacity: 0,
+			y: 50,
+			scale: 0.96,
+			duration: 1,
+			stagger: 0.15,
+			ease: 'power3.out'
+		});
+	}, 100);
+</script>
+
+
+
+
